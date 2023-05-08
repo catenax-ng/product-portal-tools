@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  portal-pgadmin4:
+  - apiVersion: v2
+    created: "2023-05-08T12:44:28.327653705Z"
+    dependencies:
+    - condition: pgadmin4.enabled
+      name: pgadmin4
+      repository: https://helm.runix.net
+      version: 1.11.x
+    description: pgAdmin4 for Catena-X Portal
+    digest: 15a1808f2fb1105730c01922a60e2a43270251ba5236c8379701b2336f13e9b4
+    name: portal-pgadmin4
+    type: application
+    urls:
+    - https://github.com/catenax-ng/product-portal-tools/releases/download/portal-pgadmin4-1.1.0/portal-pgadmin4-1.1.0.tgz
+    version: 1.1.0
+generated: "2023-05-08T12:44:28.327661605Z"
