@@ -85,7 +85,7 @@ uat:
     # - name: EXTRA_ENV
     #   value: "TRUE"
     # - name: EXTRA_ENV_SECRET
-  #   valueFrom:
+    #   valueFrom:
   #     secretKeyRef:
   #       name: "additional-credentials"
   #       key: username
@@ -176,7 +176,7 @@ serviceapi:
     # - name: EXTRA_ENV
     #   value: "TRUE"
     # - name: EXTRA_ENV_SECRET
-  #   valueFrom:
+    #   valueFrom:
   #     secretKeyRef:
   #       name: "additional-credentials"
   #       key: username
@@ -230,7 +230,7 @@ servicejobs:
     # - name: EXTRA_ENV
     #   value: "TRUE"
     # - name: EXTRA_ENV_SECRET
-  #   valueFrom:
+    #   valueFrom:
   #     secretKeyRef:
   #       name: "additional-credentials"
   #       key: username
@@ -294,7 +294,7 @@ serviceanalyzer:
     # - name: EXTRA_ENV
     #   value: "TRUE"
     # - name: EXTRA_ENV_SECRET
-  #   valueFrom:
+    #   valueFrom:
   #     secretKeyRef:
   #       name: "additional-credentials"
   #       key: username
@@ -325,7 +325,7 @@ serviceanalyzertrain:
     # - name: EXTRA_ENV
     #   value: "TRUE"
     # - name: EXTRA_ENV_SECRET
-  #   valueFrom:
+    #   valueFrom:
   #     secretKeyRef:
   #       name: "additional-credentials"
   #       key: username
@@ -364,7 +364,7 @@ metricsgatherer:
     # - name: EXTRA_ENV
     #   value: "TRUE"
     # - name: EXTRA_ENV_SECRET
-  #   valueFrom:
+    #   valueFrom:
   #     secretKeyRef:
   #       name: "additional-credentials"
   #       key: username
@@ -434,8 +434,8 @@ minio:
   endpoint: http://minio-minio.default.svc.cluster.local:9000
   endpointshort: minio-minio.default.svc.cluster.local:9000
   region: ""
-  accesskey: <minio-accesskey>
-  secretkey: <minio-secretkey>
+  accesskey: minio
+  secretkey: minio123
   accesskeyName: "access-key"
   secretkeyName: "secret-key"
   bucketPrefix: ""
@@ -451,7 +451,7 @@ ingress:
   ## IF YOU HAVE SOME DOMAIN NAME SET INGRESS.USEDOMAINNAME to true
   usedomainname: true
   hosts:
-    - host: portal-reportportal.int.demo.catena-x.net
+    - host: localhost
       paths:
         - path: /
           pathType: Prefix
@@ -469,13 +469,13 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "4000"
   tls:
     - hosts:
-        - portal-reportportal.int.demo.catena-x.net
+        - localhost
       secretName: "tls-secret"
 
 ## tolerations for all components, if any (requires Kubernetes >= 1.6)
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 tolerations: [ ]
-# - key: "key"
+  # - key: "key"
 #   operator: "Equal|Exists"
 #   value: "value"
 #   effect: "NoSchedule|PreferNoSchedule|NoExecute"
@@ -499,7 +499,7 @@ extraInitContainers: { }
   # - name: "wait-for-minio"
   #   image: "busybox"
   #   imagePullPolicy: "IfNotPresent"
-#   command:
+  #   command:
 #     - sh
 #     - "-c"
 #     - "for i in `seq 1 300`; do sleep 1; if wget http://<minio-release-name>-minio.default.svc.cluster.local:9000/minio/health/live -q -O /dev/null ; then exit 0; fi; done; exit 1"

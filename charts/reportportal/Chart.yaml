@@ -18,10 +18,18 @@
 ###############################################################
 
 apiVersion: v2
+appVersion: "5.7.4"
 name: portal-reportportal
 description: ReportPortal for Catena-X Portal
 type: application
 version: 5.7.4
+sources:
+  - https://github.com/reportportal/kubernetes
+keywords:
+  - reportportal
+maintainers:
+  - name: reportportal
+    email: support@reportportal.io
 dependencies:
   - name: postgresql
     version: 10.9.4
