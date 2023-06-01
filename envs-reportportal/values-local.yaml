@@ -18,8 +18,9 @@
 ###############################################################
 
 portal-reportportal:
-#  secret:
-#    password: ""
+  secret:
+    password: ""
+  existingSecret: secret-reportportal
   ingress:
     enabled: true
     annotations:
@@ -43,12 +44,57 @@ portal-reportportal:
       - hosts:
           - localhost
         secretName: "tls-secret"
-  minio:
-    enabled: true
-    type: minio
+  rabbitmq:
+    SecretName: ""
+    installdep:
+      enable: true
+    endpoint:
+      ## Enable HTTPS and AMQPS
+      ssl: false
+      address: rabbitmq.default.svc.cluster.local
+      port: 5672
+      user: rabbitmq
+      apiport: 15672
+      apiuser: rabbitmq
+      password:
+    ## Virtual hosts provide logical grouping and separation of resources.
+    ## ref: https://www.rabbitmq.com/vhosts.html
+    vhost: analyzer
+  postgresql:
+    SecretName: ""
+    installdep:
+      enable: true
+    endpoint:
+      address: postgresql.default.svc.cluster.local
+      port: 5432
+      user: rpuser
+      dbName: reportportal
+      ## Whether to use SSL
+      ssl: disable
+      # ssl: disable / require
+      password:
+      ## Number of database connections
+      connections:
+  elasticsearch:
     secretName: ""
     installdep:
       enable: false
+    ## Double entry moves test logs from PostgreSQL to Elastic-type engines
+    ## Ref: https://reportportal.io/blog/double-entry-in-5.7.2
+    ##
+    ## ElasticSearch Performance tuning
+    ## Ref: https://reportportal.io/docs/installation-steps/OptimalPerformanceHardwareSetup/#7-elasticsearch-performance-tuning
+    ##
+    doubleEntry:
+      enable: true
+    endpoint: http://elasticsearch-master.default.svc.cluster.local:9200
+    user: elastic
+    password:
+  minio:
+    secretName: ""
+    enabled: true
+    installdep:
+      enable: true
     endpoint: http://minio.default.svc.cluster.local:9000
     endpointshort: minio.default.svc.cluster.local:9000
     region: ""
