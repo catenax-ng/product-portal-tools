@@ -26,7 +26,6 @@ maintainers:
   - name: reportportal
     email: support@reportportal.io
 dependencies:
-  - condition: reportportal.enabled
-    name: reportportal
+  - name: reportportal
     repository: https://reportportal.github.io/kubernetes
     version: 5.7.4

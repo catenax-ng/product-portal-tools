@@ -20,8 +20,9 @@
 reportportal:
   secret:
     password: ""
+  existingSecret: secret-reportportal
   ingress:
-    enabled: false
+    enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -42,11 +43,11 @@ reportportal:
     tls:
       - hosts:
           - portal-reportportal.dummy
-        secretName: tls-secret
+        secretName: "tls-secret"
   rabbitmq:
     SecretName: ""
     installdep:
-      enable: false
+      enable: true
     endpoint:
       ## Enable HTTPS and AMQPS
       ssl: false
@@ -62,7 +63,7 @@ reportportal:
   postgresql:
     SecretName: ""
     installdep:
-      enable: false
+      enable: true
     endpoint:
       address: postgresql.default.svc.cluster.local
       port: 5432
@@ -93,12 +94,12 @@ reportportal:
     secretName: ""
     enabled: true
     installdep:
-      enable: false
+      enable: true
     endpoint: http://minio.default.svc.cluster.local:9000
     endpointshort: minio.default.svc.cluster.local:9000
     region: ""
-    accesskey: <minio-accesskey>
-    secretkey: <minio-secretkey>
+    accesskey: "minio"
+    secretkey: ""
     accesskeyName: "access-key"
     secretkeyName: "secret-key"
     bucketPrefix: ""
