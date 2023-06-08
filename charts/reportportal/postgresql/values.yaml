@@ -17,33 +17,17 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-reportportal:
-  secret:
-    password: ""
-  existingSecret: secret-reportportal
-  serviceindex:
-    resources:
-      requests:
-        cpu: 50m
-  uat:
-    resources:
-      requests:
-        cpu: 50m
-  serviceui:
-    resources:
-      requests:
-        cpu: 50m
-    securityContext:
-      runAsUser: 0
-  serviceapi:
-    resources:
-      requests:
-        cpu: 50m
-  serviceanalyzer:
-    resources:
-      requests:
-        cpu: 50m
-  serviceanalyzertrain:
-    resources:
-      requests:
-        cpu: 50m
+persistence:
+  size: 1Gi
+resources:
+  requests:
+    cpu: "100m"
+serviceAccount:
+  enabled: true
+postgresqlUsername: "rpuser"
+postgresqlDatabase: "reportportal"
+existingSecret: "reportportal-postgresql"
+initdbScripts:
+  init_postgres.sh: |
+    #!/bin/sh
+    /opt/bitnami/postgresql/bin/psql -U postgres -d ${POSTGRES_DB} -c 'CREATE EXTENSION IF NOT EXISTS ltree; CREATE EXTENSION IF NOT EXISTS pgcrypto; CREATE EXTENSION IF NOT EXISTS pg_trgm;'

@@ -17,33 +17,16 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-reportportal:
-  secret:
-    password: ""
-  existingSecret: secret-reportportal
-  serviceindex:
-    resources:
-      requests:
-        cpu: 50m
-  uat:
-    resources:
-      requests:
-        cpu: 50m
-  serviceui:
-    resources:
-      requests:
-        cpu: 50m
-    securityContext:
-      runAsUser: 0
-  serviceapi:
-    resources:
-      requests:
-        cpu: 50m
-  serviceanalyzer:
-    resources:
-      requests:
-        cpu: 50m
-  serviceanalyzertrain:
-    resources:
-      requests:
-        cpu: 50m
+apiVersion: v1
+kind: Secret
+metadata:
+  name: reportportal-postgresql
+#  annotations:
+#    app.kubernetes.io/managed-by: "Helm"
+#    meta.helm.sh/release-name: "postgresql"
+#    meta.helm.sh/release-namespace: "reportportal"
+stringData:
+  #  16 characters
+  postgresql-password: ""
+  #  16 characters
+  password: ""
