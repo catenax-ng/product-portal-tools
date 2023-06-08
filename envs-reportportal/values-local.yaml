@@ -17,24 +17,25 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-portal-reportportal:
+reportportal:
   secret:
     password: ""
   existingSecret: secret-reportportal
   ingress:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/ssl-redirect: "false"
-      nginx.ingress.kubernetes.io/rewrite-target: /$2
-      nginx.ingress.kubernetes.io/x-forwarded-prefix: /$1
-      nginx.ingress.kubernetes.io/proxy-body-size: 128m
-      nginx.ingress.kubernetes.io/proxy-buffer-size: 512k
-      nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
-      nginx.ingress.kubernetes.io/proxy-busy-buffers-size: 512k
-      nginx.ingress.kubernetes.io/proxy-connect-timeout: "8000"
-      nginx.ingress.kubernetes.io/proxy-read-timeout: "4000"
-      nginx.ingress.kubernetes.io/proxy-send-timeout: "4000"
+    usedomainname: true
+#    annotations:
+#      kubernetes.io/ingress.class: nginx
+#      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#      nginx.ingress.kubernetes.io/rewrite-target: /$2
+#      nginx.ingress.kubernetes.io/x-forwarded-prefix: /$1
+#      nginx.ingress.kubernetes.io/proxy-body-size: 128m
+#      nginx.ingress.kubernetes.io/proxy-buffer-size: 512k
+#      nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+#      nginx.ingress.kubernetes.io/proxy-busy-buffers-size: 512k
+#      nginx.ingress.kubernetes.io/proxy-connect-timeout: "8000"
+#      nginx.ingress.kubernetes.io/proxy-read-timeout: "4000"
+#      nginx.ingress.kubernetes.io/proxy-send-timeout: "4000"
     hosts:
       - host: localhost
         paths:
@@ -45,63 +46,23 @@ portal-reportportal:
           - localhost
         secretName: "tls-secret"
   rabbitmq:
-    SecretName: ""
-    installdep:
-      enable: true
+    SecretName: "reportportal-rabbitmq"
     endpoint:
-      ## Enable HTTPS and AMQPS
-      ssl: false
-      address: rabbitmq.default.svc.cluster.local
-      port: 5672
+      address: rabbitmq.reportportal.svc.cluster.local
       user: rabbitmq
-      apiport: 15672
       apiuser: rabbitmq
-      password:
-    ## Virtual hosts provide logical grouping and separation of resources.
-    ## ref: https://www.rabbitmq.com/vhosts.html
-    vhost: analyzer
+
   postgresql:
-    SecretName: ""
-    installdep:
-      enable: true
+    SecretName: "reportportal-postgresql"
     endpoint:
-      address: postgresql.default.svc.cluster.local
-      port: 5432
-      user: rpuser
-      dbName: reportportal
-      ## Whether to use SSL
-      ssl: disable
-      # ssl: disable / require
-      password:
-      ## Number of database connections
-      connections:
+      address: postgresql.reportportal.svc.cluster.local
+      
   elasticsearch:
-    secretName: ""
-    installdep:
-      enable: false
-    ## Double entry moves test logs from PostgreSQL to Elastic-type engines
-    ## Ref: https://reportportal.io/blog/double-entry-in-5.7.2
-    ##
-    ## ElasticSearch Performance tuning
-    ## Ref: https://reportportal.io/docs/installation-steps/OptimalPerformanceHardwareSetup/#7-elasticsearch-performance-tuning
-    ##
-    doubleEntry:
-      enable: true
-    endpoint: http://elasticsearch-master.default.svc.cluster.local:9200
-    user: elastic
-    password:
+    endpoint: http://elasticsearch-master.reportportal.svc.cluster.local:9200
+    
   minio:
-    secretName: ""
-    enabled: true
-    installdep:
-      enable: true
-    endpoint: http://minio.default.svc.cluster.local:9000
-    endpointshort: minio.default.svc.cluster.local:9000
-    region: ""
-    accesskey: "minio"
-    secretkey: "minio123"
-    accesskeyName: "access-key"
-    secretkeyName: "secret-key"
-    bucketPrefix: ""
-    defaultBucketName: ""
-    integrationSaltPath: ""
+    secretName: "reportportal-minio"
+    endpoint: http://minio.reportportal.svc.cluster.local:9000
+    endpointshort: minio.reportportal.svc.cluster.local:9000
+    accesskeyName: "root-user"
+    secretkeyName: "root-password"
