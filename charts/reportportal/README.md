@@ -17,7 +17,6 @@
 | Key                                                            | Type   | Default                                                             | Description |
 |----------------------------------------------------------------|--------|---------------------------------------------------------------------|-------------|
 | reportportal.secret.password                                   | string | `""`                                                                |  |
-| reportportal.env.email                                         | string | `"portal@catena-x.net"`                                             |  |
 | reportportal.existingSecret                                    | string | `"secret-reportportal"`                                             |  |
 | reportportal.ingress.enabled                                   | bool   | `false`                                                             |  |
 | reportportal.ingress.annotations."kubernetes.io/ingress.class" | string | `"nginx"`                                                           |  |
