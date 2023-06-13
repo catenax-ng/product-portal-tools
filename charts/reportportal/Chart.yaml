@@ -25,4 +25,4 @@ version: 1.0.0
 dependencies:
   - name: reportportal
     repository: https://reportportal.github.io/kubernetes
-    version: 5.7.4
+    version: 5.8.0
