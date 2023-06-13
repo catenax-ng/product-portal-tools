@@ -17,13 +17,14 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-postgresql: 
+postgresql:
   serviceAccount:
     enabled: true
-  auth:
-    username: rpuser
-    database: reportportal
-    existingSecret: "reportportal-postgresql"
+  global:
+    postgresql:
+      postgresqlUsername: rpuser
+      postgresqlDatabase: reportportal
+      existingSecret: "reportportal-postgresql"
   initdbScripts:
     init_postgres.sh: |
       #!/bin/sh
