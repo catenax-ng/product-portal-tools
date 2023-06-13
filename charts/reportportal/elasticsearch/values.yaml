@@ -19,13 +19,3 @@
 
 elasticsearch: 
   replicas: 1
-  rbac:
-    create: true
-  resources:
-    requests:
-      cpu: "100m"
-      memory: "2Gi"
-  volumeClaimTemplate:
-    resources:
-      requests:
-        storage: 3Gi
