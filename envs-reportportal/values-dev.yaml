@@ -25,16 +25,7 @@ reportportal:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/ssl-redirect: "false"
-      nginx.ingress.kubernetes.io/rewrite-target: /$2
-      nginx.ingress.kubernetes.io/x-forwarded-prefix: /$1
-      nginx.ingress.kubernetes.io/proxy-body-size: 128m
-      nginx.ingress.kubernetes.io/proxy-buffer-size: 512k
-      nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
-      nginx.ingress.kubernetes.io/proxy-busy-buffers-size: 512k
-      nginx.ingress.kubernetes.io/proxy-connect-timeout: "8000"
-      nginx.ingress.kubernetes.io/proxy-read-timeout: "4000"
-      nginx.ingress.kubernetes.io/proxy-send-timeout: "4000"
+    usedomainname: true
     hosts:
       - host: portal-reportportal.dev.demo.catena-x.net
         paths:
