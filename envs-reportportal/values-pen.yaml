@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-portal-reportportal:
+reportportal:
   secret:
     password: "<path:portal/data/pen/reportportal#password>"
   existingSecret: secret-reportportal
@@ -44,64 +44,3 @@ portal-reportportal:
       - hosts:
           - portal-reportportal.pen.demo.catena-x.net
         secretName: "tls-secret"
-  rabbitmq:
-    SecretName: "<path:portal/data/pen/reportportal/rabbitmq#SecretName>"
-    installdep:
-      enable: true
-    endpoint:
-      ## Enable HTTPS and AMQPS
-      ssl: false
-      address: rabbitmq.default.svc.cluster.local
-      port: 5672
-      user: rabbitmq
-      apiport: 15672
-      apiuser: rabbitmq
-      password:
-    ## Virtual hosts provide logical grouping and separation of resources.
-    ## ref: https://www.rabbitmq.com/vhosts.html
-    vhost: analyzer
-  postgresql:
-    SecretName: "<path:portal/data/pen/reportportal/postgresql#SecretName>"
-    installdep:
-      enable: true
-    endpoint:
-      address: postgresql.default.svc.cluster.local
-      port: 5432
-      user: rpuser
-      dbName: reportportal
-      ## Whether to use SSL
-      ssl: disable
-      # ssl: disable / require
-      password:
-      ## Number of database connections
-      connections:
-  elasticsearch:
-    secretName: "<path:portal/data/pen/reportportal/elasticsearch#secretName>"
-    installdep:
-      enable: false
-    ## Double entry moves test logs from PostgreSQL to Elastic-type engines
-    ## Ref: https://reportportal.io/blog/double-entry-in-5.7.2
-    ##
-    ## ElasticSearch Performance tuning
-    ## Ref: https://reportportal.io/docs/installation-steps/OptimalPerformanceHardwareSetup/#7-elasticsearch-performance-tuning
-    ##
-    doubleEntry:
-      enable: true
-    endpoint: http://elasticsearch-master.default.svc.cluster.local:9200
-    user: elastic
-    password:
-  minio:
-    secretName: "<path:portal/data/pen/reportportal/minio#secretName>"
-    enabled: true
-    installdep:
-      enable: true
-    endpoint: http://minio.default.svc.cluster.local:9000
-    endpointshort: minio.default.svc.cluster.local:9000
-    region: ""
-    accesskey: "minio"
-    secretkey: "<path:portal/data/pen/reportportal/minio#secretkey>"
-    accesskeyName: "access-key"
-    secretkeyName: "secret-key"
-    bucketPrefix: ""
-    defaultBucketName: ""
-    integrationSaltPath: ""

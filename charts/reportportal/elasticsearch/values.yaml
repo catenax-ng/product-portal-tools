@@ -17,15 +17,15 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-replicas: 1
-rbac:
-  create: true
-resources:
-  requests:
-    cpu: "100m"
-    memory: "2Gi"
-volumeClaimTemplate:
+elasticsearch: 
+  replicas: 1
+  rbac:
+    create: true
   resources:
     requests:
-      storage: 3Gi
-  
+      cpu: "100m"
+      memory: "2Gi"
+  volumeClaimTemplate:
+    resources:
+      requests:
+        storage: 3Gi

@@ -17,9 +17,14 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-auth:
-  existingPasswordSecret: reportportal-rabbitmq
-  existingErlangSecret: reportportal-rabbitmq
-persistence:
-  size: 1Gi
-  
+rabbitmq:
+  auth:
+    existingPasswordSecret: reportportal-rabbitmq
+    existingErlangSecret: reportportal-rabbitmq
+secrets:
+  auth:
+    existingSecret:
+      #  10 characters
+      rabbitmqPassword: "<path:portal/data/reportportal/rabbitmq#rabbitmqPassword>"
+      #  32 characters
+      rabbitmqErlangCookie: "<path:portal/data/reportportal/rabbitmq#rabbitmqErlangCookie>"

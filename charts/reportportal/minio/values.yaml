@@ -17,8 +17,12 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-auth:
-  existingSecret: reportportal-minio
-persistence:
-  size: 1Gi
+minio:
+  auth:
+    existingSecret: reportportal-minio
+secrets:
+  auth:
+    existingSecret:
+      rootPassword: "<path:portal/data/reportportal/minio#rootPassword>"
+      rootUser: "<path:portal/data/reportportal/minio#rootUser>"
   
