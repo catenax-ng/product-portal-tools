@@ -17,26 +17,12 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-reportportal:
-  secret:
-    password: ""
-  existingSecret: secret-reportportal
-  rabbitmq:
-    SecretName: "reportportal-rabbitmq"
-    endpoint:
-      address: reportportal-rabbitmq
-      user: rabbitmq
-      apiuser: rabbitmq
-  postgresql:
-    SecretName: ""
-    endpoint:
-      address: reportportal-postgresql
-      password: "<path:portal/data/reportportal/postgresql#password>"
-  elasticsearch:
-    endpoint: http://elasticsearch-master.reportportal.svc.cluster.local:9200
-  minio:
-    secretName: "reportportal-minio"
-    endpoint: http://minio.reportportal.svc.cluster.local:9000
-    endpointshort: minio.reportportal.svc.cluster.local:9000
-    accesskeyName: "root-user"
-    secretkeyName: "root-password"
+apiVersion: v2
+name: reportportal-minio
+description: "ReportPortal: Minio for Catena-X Portal"
+type: application
+version: 1.0.0
+dependencies:
+  - name: minio
+    repository: https://charts.bitnami.com/bitnami
+    version: 12.6.4

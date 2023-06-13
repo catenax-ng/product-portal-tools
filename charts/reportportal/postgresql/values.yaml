@@ -17,17 +17,22 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-persistence:
-  size: 1Gi
-resources:
-  requests:
-    cpu: "100m"
-serviceAccount:
-  enabled: true
-postgresqlUsername: "rpuser"
-postgresqlDatabase: "reportportal"
-existingSecret: "reportportal-postgresql"
-initdbScripts:
-  init_postgres.sh: |
-    #!/bin/sh
-    /opt/bitnami/postgresql/bin/psql -U postgres -d ${POSTGRES_DB} -c 'CREATE EXTENSION IF NOT EXISTS ltree; CREATE EXTENSION IF NOT EXISTS pgcrypto; CREATE EXTENSION IF NOT EXISTS pg_trgm;'
+postgresql: 
+  serviceAccount:
+    enabled: true
+  auth:
+    username: rpuser
+    database: reportportal
+    existingSecret: "reportportal-postgresql"
+  initdbScripts:
+    init_postgres.sh: |
+      #!/bin/sh
+      /opt/bitnami/postgresql/bin/psql -U postgres -d ${POSTGRES_DB} -c 'CREATE EXTENSION IF NOT EXISTS ltree; CREATE EXTENSION IF NOT EXISTS pgcrypto; CREATE EXTENSION IF NOT EXISTS pg_trgm;'
+  
+secrets:
+  auth:
+    existingSecret:
+      #  16 characters
+      postgresPassword: "<path:portal/data/reportportal/postgresql#postgresPassword>"
+      #  16 characters
+      password: "<path:portal/data/reportportal/postgresql#password>"
