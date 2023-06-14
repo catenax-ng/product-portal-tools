@@ -18,11 +18,11 @@
 ###############################################################
 
 minio:
-  auth:
-    existingSecret: reportportal-minio
+  global:
+    minio:
+      existingSecret: reportportal-minio
 secrets:
   auth:
     existingSecret:
-      rootPassword: "<path:portal/data/reportportal/minio#rootPassword>"
       rootUser: "<path:portal/data/reportportal/minio#rootUser>"
-  
+      rootPassword: "<path:portal/data/reportportal/minio#rootPassword>"
