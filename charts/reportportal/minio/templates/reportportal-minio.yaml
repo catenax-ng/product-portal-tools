@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ .Values.minio.auth.existingSecret }}
+  name: {{ .Values.minio.global.minio.existingSecret }}
   namespace: {{ .Release.Namespace }}
 stringData:
   #  10 characters
-  root-password: {{ .Values.secrets.auth.existingSecret.rootPassword | default ( randAlphaNum 32 | quote ) }}
+  access-key: {{ .Values.secrets.auth.existingSecret.rootUser | default ( randAlphaNum 32 | quote ) }}
   #  32 characters
-  root-user: {{ .Values.secrets.auth.existingSecret.rootUser | default ( randAlphaNum 32 | quote ) }}
+  secret-key: {{ .Values.secrets.auth.existingSecret.rootPassword | default ( randAlphaNum 32 | quote ) }}
