@@ -9,7 +9,7 @@ spec:
   source:
     path: charts/pgadmin4
     repoURL: 'https://github.com/catenax-ng/product-portal-tools.git'
-    targetRevision: portal-pgadmin4-1.1.0
+    targetRevision: main
     plugin:
       env:
         - name: AVP_SECRET
