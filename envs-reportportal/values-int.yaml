@@ -35,3 +35,7 @@ reportportal:
       - hosts:
           - portal-reportportal.int.demo.catena-x.net
         secretName: "tls-secret"
+  uat:
+    superadminInitPasswd:
+      auto: false
+      password: "<path:portal/data/int/reportportal#superadmininitpassword>"

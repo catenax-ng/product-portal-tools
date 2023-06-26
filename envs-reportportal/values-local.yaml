@@ -51,3 +51,7 @@ reportportal:
     secretkey: passwordpassword
     accesskeyName: "root-user"
     secretkeyName: "root-password"
+  uat:
+    superadminInitPasswd:
+      auto: false
+      password: "password"
