@@ -19,15 +19,12 @@
 
 reportportal:
   ingress:
-    enabled: true
+    enable: true
     annotations:
       kubernetes.io/ingress.class: nginx
-    usedomainname: false
+    usedomainname: true
     hosts:
-      - host: reportportal.k8.com
-        paths:
-          - path: /
-            pathType: Prefix
+      - reportportal.k8.com
     tls: []
   rabbitmq:
     SecretName: ""

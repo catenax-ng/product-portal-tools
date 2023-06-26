@@ -21,6 +21,8 @@ reportportal:
   secret:
     password: ""
   existingSecret: secret-reportportal
+  ingress:
+    enable: false
   rabbitmq:
     SecretName: ""
     endpoint:
