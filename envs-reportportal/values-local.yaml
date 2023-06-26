@@ -22,22 +22,20 @@ reportportal:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
-    usedomainname: true
+    usedomainname: false
     hosts:
-      - host: localhost
+      - host: reportportal.k8.com
         paths:
           - path: /
             pathType: Prefix
-    tls:
-      - hosts:
-          - localhost
-        secretName: "tls-secret"
+    tls: []
   rabbitmq:
-    SecretName: "reportportal-rabbitmq"
+    SecretName: ""
     endpoint:
       address: rabbitmq.reportportal.svc.cluster.local
       user: rabbitmq
       apiuser: rabbitmq
+      password: "password!!"
   postgresql:
     SecretName: ""
     endpoint:
@@ -46,8 +44,10 @@ reportportal:
   elasticsearch:
     endpoint: http://elasticsearch-master.reportportal.svc.cluster.local:9200
   minio:
-    secretName: "reportportal-minio"
+    secretName: ""
     endpoint: http://minio.reportportal.svc.cluster.local:9000
     endpointshort: minio.reportportal.svc.cluster.local:9000
+    accesskey: rootuser
+    secretkey: passwordpassword
     accesskeyName: "root-user"
     secretkeyName: "root-password"
