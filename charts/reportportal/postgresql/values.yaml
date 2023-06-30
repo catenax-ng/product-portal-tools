@@ -18,6 +18,7 @@
 ###############################################################
 
 postgresql:
+  fullnameOverride: "reportportal-postgresql"
   serviceAccount:
     enabled: true
   global:
