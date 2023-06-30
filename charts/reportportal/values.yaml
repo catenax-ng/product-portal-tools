@@ -21,12 +21,15 @@ reportportal:
   secret:
     password: ""
   existingSecret: secret-reportportal
+  ingress:
+    enable: false
   rabbitmq:
-    SecretName: "reportportal-rabbitmq"
+    SecretName: ""
     endpoint:
       address: reportportal-rabbitmq
       user: rabbitmq
       apiuser: rabbitmq
+      password: "<path:portal/data/reportportal/rabbitmq#password>"
   postgresql:
     SecretName: ""
     endpoint:
@@ -35,8 +38,10 @@ reportportal:
   elasticsearch:
     endpoint: http://elasticsearch-master.reportportal.svc.cluster.local:9200
   minio:
-    secretName: "reportportal-minio"
+    secretName: ""
     endpoint: http://minio.reportportal.svc.cluster.local:9000
     endpointshort: minio.reportportal.svc.cluster.local:9000
+    accesskey: "<path:portal/data/reportportal/minio#accesskey>"
+    secretkey: "<path:portal/data/reportportal/minio#secretkey>"
     accesskeyName: "root-user"
     secretkeyName: "root-password"
