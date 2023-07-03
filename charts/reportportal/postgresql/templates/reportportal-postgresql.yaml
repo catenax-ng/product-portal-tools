@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.postgresql.global.postgresql.existingSecret }}
+  namespace: {{ .Release.Namespace }}
+stringData:
+  #  10 characters
+  postgresql-postgres-password: {{ .Values.secrets.auth.existingSecret.postgresPassword | default ( randAlphaNum 16 | quote ) }}
+  #  32 characters
+  postgresql-password: {{ .Values.secrets.auth.existingSecret.password | default ( randAlphaNum 16 | quote ) }}
