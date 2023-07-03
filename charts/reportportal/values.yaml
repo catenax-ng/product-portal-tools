@@ -18,30 +18,36 @@
 ###############################################################
 
 reportportal:
-  secret:
-    password: ""
-  existingSecret: secret-reportportal
+  uat:
+    superadminInitPasswd:
+      auto: false
+      password: "<path:portal/data/reportportal/reportportal#password>"
   ingress:
-    enable: false
+    enable: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    usedomainname: true
+    hosts:
+      - portal-reportportal.dev.demo.catena-x.net
+    tls:
+      - hosts:
+          - portal-reportportal.dev.demo.catena-x.net
+        secretName: "tls-secret"
   rabbitmq:
-    SecretName: ""
     endpoint:
       address: reportportal-rabbitmq
       user: rabbitmq
       apiuser: rabbitmq
       password: "<path:portal/data/reportportal/rabbitmq#password>"
   postgresql:
-    SecretName: ""
     endpoint:
       address: reportportal-postgresql
       password: "<path:portal/data/reportportal/postgresql#password>"
   elasticsearch:
-    endpoint: http://elasticsearch-master.reportportal.svc.cluster.local:9200
+    endpoint: http://reportportal-elasticsearch:9200
+    password: "<path:portal/data/reportportal/elasticsearch#password>"
   minio:
-    secretName: ""
-    endpoint: http://minio.reportportal.svc.cluster.local:9000
-    endpointshort: minio.reportportal.svc.cluster.local:9000
-    accesskey: "<path:portal/data/reportportal/minio#accesskey>"
-    secretkey: "<path:portal/data/reportportal/minio#secretkey>"
-    accesskeyName: "root-user"
-    secretkeyName: "root-password"
+    endpoint: http://reportportal-minio:9000
+    endpointshort: reportportal-minio:9000
+    accesskey: "<path:portal/data/reportportal/minio#rootUser>"
+    secretkey: "<path:portal/data/reportportal/minio#rootPassword>"
