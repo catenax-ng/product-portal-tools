@@ -38,7 +38,7 @@ reportportal:
       address: reportportal-rabbitmq
       user: rabbitmq
       apiuser: rabbitmq
-      password: "<path:portal/data/reportportal/rabbitmq#password>"
+      password: "<path:portal/data/reportportal/rabbitmq#rabbitmqPassword>"
   postgresql:
     endpoint:
       address: reportportal-postgresql
