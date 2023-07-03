@@ -21,6 +21,7 @@ minio:
   global:
     minio:
       existingSecret: reportportal-minio
+  fullnameOverride: "reportportal-minio"
 secrets:
   auth:
     existingSecret:
