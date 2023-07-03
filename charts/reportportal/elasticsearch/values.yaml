@@ -19,3 +19,4 @@
 
 elasticsearch:
   replicas: 1
+  fullnameOverride: "reportportal-elasticsearch"
