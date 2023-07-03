@@ -6,7 +6,7 @@
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://helm.runix.net | pgadmin4 | 1.11.x |
+| https://helm.runix.net | pgadmin4 | 1.15.x |
 
 ## Values
 
