@@ -19,4 +19,7 @@
 
 elasticsearch:
   replicas: 1
+  secret:
+    enabled: true
+    password: "<path:portal/data/reportportal/elasticsearch#password>"
   fullnameOverride: "reportportal-elasticsearch"
