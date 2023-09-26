@@ -19,7 +19,7 @@
 
 goldilocks:
   vpa:
-    enabled: true
+    enabled: false
     rbac:
       create: false
   controller:

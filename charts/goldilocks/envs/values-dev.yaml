@@ -18,8 +18,6 @@
 ###############################################################
 
 goldilocks:
-  vpa:
-    enabled: true
   dashboard:
     ingress:
       enabled: true
