@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: portal-goldilocks
+spec:
+  destination:
+    namespace: product-portal
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/goldilocks
+    repoURL: 'https://github.com/catenax-ng/product-portal-tools.git'
+    targetRevision: chore/goldilocks
+    plugin:
+      env:
+        - name: AVP_SECRET
+          value: vault-secret
+        - name: helm_args
+          value: '-f values.yaml -f envs/values-dev.yaml'
+  project: project-portal
