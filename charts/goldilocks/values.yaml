@@ -20,7 +20,12 @@
 goldilocks:
   vpa:
     enabled: true
+  controller:
+    rbac:
+      create: false
   dashboard:
+    rbac:
+      create: false
     ingress:
       enabled: true
       ingressClassName: "nginx"
