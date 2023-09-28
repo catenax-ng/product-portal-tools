@@ -18,14 +18,16 @@
 ###############################################################
 
 goldilocks:
-  vpa:
-    enabled: true
   dashboard:
     ingress:
-      enabled: false
+      enabled: true
       ingressClassName: "nginx"
       hosts:
-        - host: goldilocks.example.org
+        - host: goldilocks.int.demo.catena-x.net
           paths:
           - path: /
             type: Prefix
+      tls:
+        - hosts:
+          - goldilocks.int.demo.catena-x.net
+          secretName: tls-secret

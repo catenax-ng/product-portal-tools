@@ -23,11 +23,11 @@ goldilocks:
       enabled: true
       ingressClassName: "nginx"
       hosts:
-        - host: portal-goldilocks.dev.demo.catena-x.net
+        - host: goldilocks.dev.demo.catena-x.net
           paths:
           - path: /
             type: Prefix
       tls:
         - hosts:
-          - portal-goldilocks.dev.demo.catena-x.net
+          - goldilocks.dev.demo.catena-x.net
           secretName: tls-secret
